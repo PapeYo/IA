@@ -9,9 +9,9 @@ Yohan JARNAC - Pascal ANDRAWS
 
 #### 1.2.a) Quelle clause Prolog permettrait de représenter la situation finale du Taquin 4x4 ?
 ```
-final_state([1,  2,  3,  4],
-            [5,  6,  7,  8],
-            [9,  10, 11, 12],
+final_state([1,  2,  3,  4   ],
+            [5,  6,  7,  8   ],
+            [9,  10, 11, 12  ],
             [13, 14, 15, vide]).
 ```
 
@@ -191,3 +191,16 @@ Soit `J` le joueur, `Etat` la situation actuelle, alors `Succ` est la liste des 
 
 #### 4.1 Indiquez le meilleur coup à jouer et le gain espéré pour une profondeur d’analyse de 1, 2, 3, 4 , 5 , 6 , 7, 8, 9.
 ![](Images_CR/Vals_TP2.png)
+
+Lorsque Pmax = 9, nous n'avons pas de résultat mais une erreur de __Stack limit exceeded__.
+#### 4.2 Comment ne pas développer inutilement des situations symétriques de situations déjà développées ?
+
+Il faudrait faire, avant d'évaluer la situation, des rotations de la situation actuelle afin de vérifier qu'elle ne soit pas une symétrie d'une situation déja évaluée.
+
+#### 4.3 Que faut-il reprendre pour passer au jeu du puissance 4 ?
+
+Il faut reprendre les prédicats d'alignement pour les faire passer de 3 éléments à 4, ainsi que rajouter la notion d'empilage afin que les pièces jouées dans une colonne finissent dans l'espace libre le plus bas de la colonne *(les pièces ne lévitent pas dans le Puissance 4 puisque soumises à la gravité, c'est donc à nous de le retranscrire)*.
+
+#### 4.4 Comment améliorer l’algorithme en élaguant certains coups inutiles (recherche Alpha-Beta) ?
+
+On va comparer le meilleur coup de la branche que l'on souhaite développer *(disons branche A)* avec le meilleur coup des branches déjà développées. On ne dévloppera la branche A que si son meilleur coup est plus élevé que les autres.

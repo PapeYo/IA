@@ -84,8 +84,8 @@ colonne(C,M) :-
 diagonale(D, M) :-
 	premiere_diag(1,D,M).
 diagonale(D, M) :-
-	length(M,G),
-	seconde_diag(G,D,M).
+	length(M,Len),
+	seconde_diag(Len,D,M).
 
 premiere_diag(_,[],[]).
 premiere_diag(K,[E|D],[Ligne|M]) :-
@@ -105,7 +105,7 @@ seconde_diag(K,[E|D],[Ligne|M]) :-
 	 *****************************/
 
 possible([X|L], J) :- unifiable(X,J), possible(L,J).
-possible(  [],  _).
+possible([]   , _).
 
 	/* Attention
 	il faut juste verifier le caractere unifiable

@@ -56,19 +56,19 @@
 A FAIRE : ECRIRE ici les clauses de negamax/5
 .....................................
 	*/
-% cas n°1 : P = Pmax
+% cas nï¿½1 : P = Pmax
 negamax(J,Etat,P,P,[Coup,Val]) :-
 	Coup = rien,
 	heuristique(J,Etat,Val).
 
-% cas n°2 : tableau complet
+% cas nï¿½2 : tableau complet
 negamax(J,Etat,P,Pmax,[Coup,Val]) :-
 	P<Pmax,
-	ground(Etat),
 	Coup = rien,
+	ground(Etat),
 	heuristique(J,Etat,Val).
 
-% cas n°3
+% cas nï¿½3
 negamax(J,Etat,P,Pmax,[Coup,Val]) :-
 	P<Pmax,
 	not(situation_terminale(J,Etat)),
@@ -145,7 +145,7 @@ meilleur([Head|Tail],Best) :-
 	Head = [_,Vh],
 	meilleur(Tail,M),
 	M = [_,Vm],
-	(Vh<Vm -> M = Head ; Best = M).
+	(Vh<Vm -> Best = Head ; Best = M).
 
 	/******************
 	PROGRAMME PRINCIPAL

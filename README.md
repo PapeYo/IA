@@ -38,7 +38,7 @@ nth1(C,LigneF,a).
 ```
 Swi-Prolog renvoie alors :
 ```
-false
+false.
 ```
 ###### Pour P = c qui est bien placée
 ```

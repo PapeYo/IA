@@ -20,9 +20,9 @@ final_state([1,  2,  3,  4],
 ```
 ?- initial_state(Ini), nth1(L,Ini,Ligne), nth1(C,Ligne,d).
 ```
-Cette requête renvoie les coordonnées (L,C) de 'd' dans la matrice 'Ini'.
+Cette requête renvoie les coordonnées `(L,C)` de `d` dans la matrice `Ini`.
 
 ```
 ?- final_state(Fin), nth1(3,Fin,Ligne), nth1(2,Ligne,P).
 ```
-Cette requête renvoie 'P' qui est l'élément présent aux coordonnées (3,2) dans la matrice 'Fin'.
+Cette requête renvoie `P` qui est l'élément présent aux coordonnées `(3,2)` dans la matrice `Fin`.

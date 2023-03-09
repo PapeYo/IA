@@ -41,19 +41,23 @@ initial_state([ [b, h, c],       % C'EST L'EXEMPLE PRIS EN COURS
 initial_state([ [ a, b, c],
                 [ g, h, d],
                 [vide,f, e] ]). % h2=2, f*=2
-
+*/
+/*
 initial_state([ [b, c, d],
                 [a,vide,g],
                 [f, h, e]  ]). % h2=10 f*=10
-
+*/
+/*
 initial_state([ [f, g, a],
                 [h,vide,b],
                 [d, c, e]  ]). % h2=16, f*=20
-
+*/
+/*
 initial_state([ [e, f, g],
                 [d,vide,h],
                 [c, b, a]  ]). % h2=24, f*=30
-
+*/
+/*
 initial_state([ [a, b, c],
                 [g,vide,d],
                 [h, f, e]]). % etat non connexe avec l'etat final (PAS DE SOLUTION)
@@ -170,9 +174,9 @@ coordonnees([L,C], Mat, Elt) :-
    % HEURISTIQUES
    %*************
 
-heuristique(U,H) :-
-%    heuristique1(U,H).  % au debut on utilise l'heuristique 1
-   heuristique2(U,H).  % ensuite utilisez plutot l'heuristique 2
+heuristique(U,H,F) :-
+%   heuristique1(U,H,F).  % au debut on utilise l'heuristique 1
+   heuristique2(U,H,F).  % ensuite utilisez plutot l'heuristique 2
 
 
    %****************
@@ -197,8 +201,7 @@ malplace(P,U,F) :-
     % Definir enfin l'heuristique qui determine toutes les pieces mal placees (voir predicat findall)
 	% et les compte (voir predicat length)
 
-heuristique1(U,H) :-
-   final_state(F),
+heuristique1(U,H,F) :-
    findall(P, (malplace(P,U,F), P\=vide), R),
    length(R,H).
 
@@ -208,15 +211,13 @@ heuristique1(U,H) :-
    % Somme des distances de Manhattan a parcourir par chaque piece
    % entre sa position courante et sa positon dans l'etat final
 
-diff(U,P,D) :-
-   final_state(F),
+diff(U,P,D,F) :-
    coordonnees([Lu,Cu],U,P),
    coordonnees([Lf,Cf],F,P),
    Dl is abs(Lu-Lf),
    Dc is abs(Cu-Cf),
    D is Dl+Dc.
 
-heuristique2(U,H) :-
-   final_state(F),
-   findall(D, (malplace(P,U,F), P\=vide, diff(U,P,D)), Ld),
+heuristique2(U,H,F) :-
+   findall(D, (malplace(P,U,F), P\=vide, diff(U,P,D,F)), Ld),
    sum_list(Ld,H).

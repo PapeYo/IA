@@ -49,7 +49,8 @@ Predicat principal de l'algorithme :
 
 main :-
 	initial_state(S0),
-	heuristique2(S0,H0),
+	final_state(Final),
+	heuristique(S0,H0,Final),
 	G0 is 0,
 	F0 is H0+G0,
 	% initialisations Pf, Pu et Q
@@ -59,12 +60,12 @@ main :-
 	insert([[F0,H0,G0],S0],Pf,NewPf),
 	insert([S0,[F0,H0,G0],nil,nil],Pu,NewPu),
 	% lancement de Aetoile
-	aetoile(NewPf,NewPu,Q).
+	aetoile(NewPf,NewPu,Q,Final).
 
 % ************************************************************************
-expand([[_F,_H,G],Etat],Successors) :-
+expand([[_F,_H,G],Etat],Successors,Final) :-
 	findall([V,[Fv,Hv,Gv],Etat,Av],(rule(Av,Kev,Etat,V),
-				     heuristique(V,Hv),
+				     heuristique(V,Hv,Final),
 				     Gv is G+Kev,
 				     Fv is Hv + Gv), Successors).
 
@@ -109,20 +110,27 @@ affiche_solution(Q,Etat) :-
 		writeln("")).
 
 %*******************************************************************************
-aetoile([],[],_) :-
+aetoile([],[],_,_) :-
 	writeln("PAS DE SOLUTION ! L'ETAT FINAL N'EST PAS ATTEIGNABLE !").
 
-aetoile(Pf, Pu, Q) :-
-	final_state(F),
+aetoile(Pf, Pu, Q, Final) :-
 	suppress_min([[_,_,G],U],Pf,Pf2),
-	(U=F ->
+	(U=Final ->
 		suppress([U,FGH,P,A],Pu,_),
 		insert([U,FGH,P,A],Q,Q_new),
 		affiche_solution(Q_new,U)
 	;
 		suppress([U,FHG,P,A],Pu,Pu2),
-		expand([[_,_,G],U],Succ),
+		expand([[_,_,G],U],Succ,Final),
 		loop_successors(Succ,Pu2,Pf2,Q,Pu_New,Pf_New),
 		insert([U,FHG,P,A], Q, Q_New),
-		aetoile(Pf_New,Pu_New,Q_New)
+		aetoile(Pf_New,Pu_New,Q_New,Final)
 	).
+
+/* RunTime test */
+
+test_time(Runtime) :-
+	get_time(Start),
+	main,
+	get_time(Stop),
+	Runtime is Stop-Start.

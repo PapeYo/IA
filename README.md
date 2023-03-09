@@ -74,3 +74,6 @@ On obtient en plus les coordonnées de C *qui sont (1,3)*.
 ```
 ?- initial_state(Ini), findall([A,S], rule(A,1,Ini,S), L).
 ```
+### 3.3 Analyse expérimentale
+
+#### Temps de calcul de A*

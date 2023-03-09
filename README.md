@@ -77,4 +77,7 @@ On obtient en plus les coordonnées de C *qui sont (1,3)*.
 ### 3.3 Analyse expérimentale
 
 #### Temps de calcul de A*
-![] (Images_CR/Tps_calcul_TP1.png)
+![](Images_CR/Tps_calcul_TP1.png)
+
+Nous pouvons constater que sur des cas simples avec seulement quelques déplacements nécessaires à la résolution, l'heuristique 1 procure un plus faible temps de calcul.  
+Cependant, l'heuristique 2 va rapidement être préférée de par son temps de calcul plus faible pour des situations initiales plus complexes, mais aussi car elle va réussir à trouver une solution à ces dernières. Notre code n'étant pas optimal, nous n'avons pas de solution pour l'avant-dernier cas mais nous en avons une pour le précédent, solution que l'heuristique 1 ne nous procure pas.

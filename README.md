@@ -77,3 +77,4 @@ On obtient en plus les coordonnées de C *qui sont (1,3)*.
 ### 3.3 Analyse expérimentale
 
 #### Temps de calcul de A*
+![] (https://github.com/PapeYo/IA/blob/main/Images%20CR/Tps%20calcul%20TP1.png)

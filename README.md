@@ -9,22 +9,22 @@ Yohan JARNAC - Pascal ANDRAWS
 
 #### 1.2.a) Quelle clause Prolog permettrait de représenter la situation finale du Taquin 4x4 ?
 ```
-final_state([1,  2,  3,  4   ],
-            [5,  6,  7,  8   ],
-            [9,  10, 11, 12  ],
-            [13, 14, 15, vide]).
+final_state([ 1  , 2  , 3  ,  4  ],
+            [ 5  , 6  , 7  ,  8  ],
+            [ 9  , 10 , 11 ,  12 ],
+            [ 13 , 14 , 15 , vide]).
 ```
 
 #### 1.2.b) A quelles questions permettent de répondre les requêtes suivantes ?
 ```
 ?- initial_state(Ini), nth1(L,Ini,Ligne), nth1(C,Ligne,d).
 ```
-Cette requête renvoie les coordonnées __(L,C)__ de __d__ dans la matrice __Ini__.  
+Cette requête renvoie les coordonnées `(L,C)` de `d` dans la matrice `Ini`.  
 
 ```
 ?- final_state(Fin), nth1(3,Fin,Ligne), nth1(2,Ligne,P).
 ```
-Cette requête renvoie __P__ qui est l'élément présent aux coordonnées __(3,2)__ dans la matrice __Fin__.  
+Cette requête renvoie `P` qui est l'élément présent aux coordonnées `(3,2)` dans la matrice `Fin`.  
 
 #### 1.2.c) Quelle requête Prolog permettrait de savoir si une pièce donnée P est bien placée dans U0 (par rapport à F) ?
 ###### Pour P = a qui n'est pas bien placée
@@ -58,7 +58,7 @@ Ligne = [b, h, c],
 C0 = 3,
 LigneF = [a, b, c]
 ```
-On obtient en plus les coordonnées de C *qui sont (1,3)*.
+On obtient en plus les coordonnées de C qui sont `(1,3)`.
 
 #### 1.2.d) Quelle requête permet de trouver une situation suivante de l'état initial du Taquin 3x3 ? *(3 sont possibles)*
 ```
@@ -106,12 +106,12 @@ Une fois ceci effectué, on pourrait appliquer A* afin de savoir comment résoud
 ```
 ?- situation_initiale(S), joueur_initial(J).
 ```
-Cette requête définit l'état initial du jeu *(une grille de 3x3 vide)* ainsi que le joueur initial *(qui est définit arbitrairement comme étant le joueur __x__)*
+Cette requête définit l'état initial du jeu *(une grille de 3x3 vide)* ainsi que le joueur initial *(qui est définit arbitrairement comme étant le joueur `x`)*
 
 ```
 ?- situation_initiale(S), nth1(3,S,Lig), nth1(2,Lig,o)
 ```
-Cette requête indique qu'un __o__ est placé aux coordonnées __(3,2)__
+Cette requête indique qu'un `o` est placé aux coordonnées `(3,2)`
 
 #### 2.2 Proposez des requêtes de tests unitaires pour chaque prédicat.
 ##### Tests et réponses de Swi-Prolog pour `alignement-gagnant(Ali,J)`
@@ -155,7 +155,7 @@ H = 0.
 ```
 
 #### Proposer d’autres tests unitaires pour vérifier qu’elle retourne bien les valeurs attendues dans le cas d’une situation gagnante pour J, perdante pour J ou nulle.
-##### Situation gagnante pour __x__
+##### Situation gagnante pour `x`
 ```
 ?- heuristique(x,[[x,x,x],[o,o,_],[_,_,_]],H).
 H = 10000.
@@ -164,7 +164,7 @@ H = 10000.
 ?- heuristique(x,[[x,o,_],[o,x,_],[_,_,x]],H).
 H = 10000.
 ```
-##### Situation perdante pour __o__
+##### Situation perdante pour `o`
 ```
 ?- heuristique(o,[[x,x,x],[o,o,_],[_,_,_]],H).
 H = -10000.

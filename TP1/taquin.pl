@@ -142,8 +142,6 @@ delete(N,X,[Y|L], [Y|R]) :-
    delete(N1,X,L,R),
    N is N1 + 1.
 
-
-
    %*******************
    % PARTIE A COMPLETER
    %*******************

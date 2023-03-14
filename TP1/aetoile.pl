@@ -53,7 +53,7 @@ main :-
 	heuristique(S0,H0,Final),
 	G0 is 0,
 	F0 is H0+G0,
-	% initialisations Pf, Pu et Q
+	% initialisations de Pf, Pu et Q
 	empty(Pf),
 	empty(Pu),
 	empty(Q),
